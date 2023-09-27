@@ -1,0 +1,29 @@
+<div class="center" *ngIf="initialView">
+<app-list (changeView)="change()"></app-list>
+</div>
+<div class="center column" *ngIf="!initialView">
+    <h1>Draft your email now !!</h1>
+    <form [formGroup]="emailForm" class="center column">
+        <mat-card class="center column">
+            <div class="row">
+                <mat-form-field>
+                    <input matInput formControlName="from" placeholder="from email" type="email">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput formControlName="to" placeholder="recipient email" type="email">
+                </mat-form-field>
+            </div>
+            <div style="width: 80%;height: 50%;">
+                <mat-form-field class="textarea">
+                    <textarea formControlName="body" matInput></textarea>
+                </mat-form-field>
+            </div>
+            <div class="end" style="margin-right: 307px;">
+                <input type="file" (change)="handleFileInput($event)">
+                <button mat-raised-button type="submit" color="primary" (click)="sendEmail()">
+                    Send
+                </button>
+            </div>
+        </mat-card>
+    </form>
+</div>
